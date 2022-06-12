@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "create venv",
+      "command": "python -m venv venv",
+      "type": "shell",
+      "args": [],
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "install packages",
+      "command": "${command:python.interpreterPath}",
+      "args": ["-m", "pip", "install", "-r", "requirements.txt"],
+      "type": "shell",
+      "presentation": {
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": [],
+      "dependsOn": ["activate venv"],
+      "dependsOrder": "sequence"
+    },
+    {
+      "label": "install packages [dev]",
+      "command": "${command:python.interpreterPath}",
+      "args": ["-m", "pip", "install", "-r", "requirements-dev.txt"],
+      "type": "shell",
+      "presentation": {
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": [],
+      "dependsOn": ["activate venv"],
+      "dependsOrder": "sequence"
+    },
+    {
+      "label": "create requirements file",
+      "command": "${workspaceFolder}/venv/Scripts/pipreqs.exe",
+      "args": ["--force", "${workspaceFolder}"],
+      "type": "shell",
+      "problemMatcher": []
+    }
+  ]
+}
